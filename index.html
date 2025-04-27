@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown Widget</title>
+  <style>
+    /* ========== 기본 화면 설정 ========== */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #191919 !important;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ========== D-day + 제목 묶는 컨테이너 ========== */
+    .countdown-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ========== D-day 숫자 표시 (예: D-42) ========== */
+    .dday {
+      font-size: 12vw;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      color: #aaa;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    /* ========== 하단 텍스트 (카운트다운 제목) ========== */
+    .label {
+      font-size: 10px;
+      font-weight: lighter;
+      color: #aaa;
+      margin-top: 0.5vh;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 0.4s;
+      text-transform: uppercase;
+    }
+
+    /* ========== 부드럽게 나타나는 애니메이션 ========== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== 모바일 대응 스타일 ========== */
+    @media (max-width: 600px) {
+      .dday {
+        font-size: 20vw;
+      }
+
+      .label {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- D-day + 제목 묶음 -->
+  <div class="countdown-block">
+    <div class="dday" id="dday">D-00</div>     <!-- D-day 자리 -->
+    <div class="label" id="label">UNTIL LAUNCH</div> <!-- 카운트다운 제목 -->
+  </div>
+
+  <script>
+    // 🎯 목표 날짜 설정 (YYYY-MM-DD 형식)
+    const targetDate = new Date("2025-06-01T00:00:00");
+
+    // 📅 오늘 날짜 가져오기
+    const today = new Date();
+
+    // 🧮 남은 일 수 계산
+    const timeDiff = targetDate - today;
+    const remainingDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // 소수점 올림
+
+    // ⏱ D-day 표기 (오늘이면 D-DAY, 나중이면 D-XX, 지났으면 D+XX)
+    let ddayText = '';
+    if (remainingDays > 0) {
+      ddayText = `D-${remainingDays}`;
+    } else if (remainingDays === 0) {
+      ddayText = `D-DAY`;
+    } else {
+      ddayText = `D+${Math.abs(remainingDays)}`;
+    }
+
+    // ⏱ 텍스트 삽입
+    document.getElementById('dday').textContent = ddayText;
+
+    // 📝 제목 바꾸고 싶으면 여기 수정!
+    document.getElementById('label').textContent = "UNTIL LAUNCH";
+  </script>
+</body>
+</html>
