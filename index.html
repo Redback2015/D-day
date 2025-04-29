@@ -86,6 +86,10 @@
       const targetDate = new Date(dateParam || "2025-06-01");
       const today = new Date();
 
+      // ✅ 시간 제거: 날짜만 비교하도록 설정
+      targetDate.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
+
       // 🧮 남은 일 수 계산
       const timeDiff = targetDate - today;
       const remainingDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
