@@ -71,7 +71,7 @@
   <!-- D-day + 제목 묶음 -->
   <div class="countdown-block">
     <div class="dday" id="dday">D-00</div>     <!-- D-day 자리 -->
-    <div class="label" id="label">UNTIL LAUNCH</div> <!-- 카운트다운 제목 -->
+    <div class="label" id="label">스튜디오 오픈</div> <!-- 카운트다운 제목 -->
   </div>
 
   <script>
@@ -83,7 +83,7 @@
       const labelParam = decodeURIComponent(urlParams.get("label") || "UNTIL LAUNCH");
 
       // 📅 목표 날짜 설정 (기본값: 2025-06-01)
-      const targetDate = new Date(dateParam || "2025-06-01");
+      const targetDate = new Date("2025-08-04");
       const today = new Date();
 
       // ✅ 시간 제거: 날짜만 비교하도록 설정
